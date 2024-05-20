@@ -74,7 +74,10 @@ public class Mensaje
      */
     public void agregarLinea(int pos, String linea)
     {
-        // TODO: Implementar este método
+        assert linea == null : "error 404";
+        if (pos < 0) {
+            throw new IllegalArgumentException("posicion invalida");
+        }
     }
     
     /**
