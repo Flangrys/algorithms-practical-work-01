@@ -74,10 +74,11 @@ public class Mensaje
      */
     public void agregarLinea(int pos, String linea)
     {
-        assert linea == null : "error 404"; //puto
-        if (pos < 0) {
-            throw new IllegalArgumentException("posicion invalida");
-        }
+        if (pos < 0 || pos > lineas.size()) throw new IndexOutOfBoundsException("el valor del parametro 'pos' se encuentra fuera del rango");
+        if (linea == null || linea.length() > LONG_MAX_LINEA) throw new IllegalArgumentException("el valor del parametro 'linea' no debe ser nulo o superior a 80 caracteres");
+        if (!esAscii(linea)) throw new IllegalArgumentException("el valor del parametro 'linea' debe ser ASCII");
+
+        lineas.add(pos, linea);
     }
     
     /**
