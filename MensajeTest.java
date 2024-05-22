@@ -1,7 +1,5 @@
 
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -12,8 +10,27 @@ import org.junit.jupiter.api.Test;
  */
 public class MensajeTest
 {
+    @Test
+    public void testGenerarCodigoEncriptacion() {
+        int[] encriptKey = new int[] {4, 2, 0};
 
-    
+        Mensaje message = new Mensaje();
+        message.agregarLinea("hola");
+
+        CodificadorMensajes encode = new CodificadorMensajes(message);
+
+        assertDoesNotThrow(
+                encode::codificarMensaje,
+            "Se espera que no lanze una excepcion durante el test"
+        );
+
+        assertArrayEquals(
+                encode.obtenerCodigoEncripcion(),
+                encriptKey,
+                "El codigo de encriptacion no es el que se espera"
+        );
+    }
+
     @Test
     public void testConstructor() {
         Mensaje msg = new Mensaje();

@@ -120,15 +120,37 @@ public class CodificadorMensajes
      * Para calcular el código de encripción se suman los códigos ASCII de str, 
      * y se divide por 99991 (el número primo de 5 dígitos más grande). Los 
      * dígitos del resto de la división constituyen el código de encripción.
+     * <hr>
      * Ej: para la cadena "hola", los códigos ascii de los caracteres son
      * 104, 111, 108 y 97, respectivamente. Su suma es 420, y 420 % 99991 es
      * 420. Luego, el código de inscripción es el arreglo {4, 2, 0}.
+     *
+     * @param str La secuencia a evaluar el codigo de encriptacion.
+     * @return Un arreglo compuesto por los numeros que cifran a la secuencia.
      */
     private int[] generarCodigoEncripcion(String str) 
     {
-        // TODO: Implementar este método sustituyendo la línea
-        // debajo con el código de la funcionalidad.
-        return null;
+        if (str == null || str.isEmpty()) {
+            throw new IllegalArgumentException("el mensaje no puede ser nulo o vacio");
+        }
+
+        int caracterAscii = 0;
+
+        for (int i = 0; i < str.length(); i++) {
+                caracterAscii += str.charAt(i) % 99991;
+        }
+
+        String codigo = Integer.toString(caracterAscii);
+
+        int[] codigosEncriptacion = new int[codigo.length()];
+
+        for (int i = 0; i < codigo.length(); i++) {
+            int formattedCode = Integer.parseInt(codigo.charAt(i) + "");
+
+            codigosEncriptacion[i] = formattedCode;
+        }
+
+        return codigosEncriptacion;
     }
     
     /**
