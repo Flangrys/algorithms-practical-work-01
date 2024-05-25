@@ -133,13 +133,24 @@ public class Mensaje
      * línea de cada mensaje coincide.
      * Precondición: otro debe ser distinto de null.
      * @param otro es el mensaje con el cual comparar el mensaje actual.
-     * @return true ssi el mensaje es igual a otro (el parámetro).
+     * @return true si el mensaje es igual a otro (el parámetro).
      */
     public boolean equals(Mensaje otro)
     {
-        // TODO: Implementar este método sustituyendo la línea debajo, con el 
-        // código de la implementación
-        return false;
+        assert otro != null : "mensaje invalido";
+        // verifica si los tamaños de las listas son diferentes
+        if (this.lineas.size() != otro.lineas.size()) {
+            return false; // no son iguales
+        }
+        // compara las lineas individualmente
+        for(int i = 0; i < this.lineas.size(); i++){
+            String actuaLinea = this.lineas.get(i);
+            String otraLinea = otro.lineas.get(i);
+            if (!actuaLinea.equals(otraLinea)){
+                return false; // las lineas no coinciden
+            }
+        }
+        return true; // todas las lineas coinciden, es igual al otro
     }
     
     /**

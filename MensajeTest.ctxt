@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=MensajeTest
-comment0.text=\n\ Tests\ de\ unidad\ para\ la\ clase\ Mensaje\n\n\ @author\ N.\ Aguirre\n\ @version\ 0.1\n
+comment0.text=\r\n\ Tests\ de\ unidad\ para\ la\ clase\ Mensaje\r\n\r\n\ @author\ N.\ Aguirre\r\n\ @version\ 0.1\r\n
 comment1.params=
 comment1.target=void\ testConstructor()
 comment10.params=
