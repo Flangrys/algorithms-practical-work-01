@@ -57,7 +57,21 @@ public class DecodificadorMensajes
      */
     public void decodificarMensaje() 
     {
-        // TODO: Implementar este método
+        if (!(this.mensajeDecodificado == null)) {
+            throw new IllegalStateException("no se puede decodificar un mensaje ya decodificado");
+        }
+
+        this.mensajeDecodificado = new Mensaje();
+
+        int limite = this.mensajeADecodificar.cantLineas();
+
+        for (int i = 0; i < limite; i++) {
+            String linea = this.mensajeADecodificar.obtenerLinea(i);
+
+            String lineaDesencriptada = this.desencriptarCadena(linea, this.codigoEncripcion);
+
+            this.mensajeDecodificado.agregarLinea(i, lineaDesencriptada);
+        }
     }
     
     /**

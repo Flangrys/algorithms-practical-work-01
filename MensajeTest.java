@@ -12,12 +12,12 @@ public class MensajeTest
 {
     @Test
     public void testGenerarCodigoEncriptacion() {
-        int[] encriptKey = new int[] {4, 2, 0};
+        int[] clave = new int[] {4, 2, 0};
 
-        Mensaje message = new Mensaje();
-        message.agregarLinea("hola");
+        Mensaje mensaje = new Mensaje();
+        mensaje.agregarLinea("hola");
 
-        CodificadorMensajes encode = new CodificadorMensajes(message);
+        CodificadorMensajes encode = new CodificadorMensajes(mensaje);
 
         assertDoesNotThrow(
                 encode::codificarMensaje,
@@ -26,7 +26,7 @@ public class MensajeTest
 
         assertArrayEquals(
                 encode.obtenerCodigoEncripcion(),
-                encriptKey,
+                clave,
                 "El codigo de encriptacion no es el que se espera"
         );
     }
