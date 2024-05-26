@@ -31,6 +31,25 @@ public class MensajeTest
         );
     }
 
+    /**
+     * Ejemplo la cadena Viterbo, y el codigo {1, 2}.
+     *el caracter 1 se codifica con 1, el 2 con 2, el 3 con 1... etc.
+     *el caracter V se codifica con W, el i con k, el t con u... etc.
+     * la cadena encriptada es Wkugsdp
+     */
+    @Test
+    public void testDesencriptarCadena(){
+
+        int[] codigo = new int[] {1, 2};
+        String str="Wkugsdp";
+        String aux="";
+
+        DecodificadorMensajes deco = new DecodificadorMensajes(new Mensaje(), codigo);
+        assertEquals("Viterbo", deco.desencriptarCadena(str, codigo), "el resultado deberia ser Viterbo");
+
+
+    }
+
     @Test
     public void testConstructor() {
         Mensaje msg = new Mensaje();

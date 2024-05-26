@@ -160,6 +160,12 @@ public class CodificadorMensajes
      * múltiples valores: se usa el primero para el primer caracter, el segundo para el segundo,
      * y así sucesivamente. Si se agota el código, se vuelve al comienzo del mismo, hasta
      * encriptar toda la cadena.
+     * -
+     * Ejemplo la cadena Viterbo, y el codigo {1, 2}.
+     * el caracter 1 se codifica con 1, el 2 con 2, el 3 con 1... etc.
+     * el caracter V se codifica con W, el i con k, el t con u... etc.
+     * la cadena encriptada es Wkugsdp
+     * -
      * Precondición: tanto str como codigo no deben ser nulos.
      * @param str es la cadena a encriptar
      * @param codigo es el código a utilizar para la encripción
