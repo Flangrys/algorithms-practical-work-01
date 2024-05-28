@@ -137,18 +137,21 @@ public class Mensaje
      */
     public boolean equals(Mensaje otro)
     {
-        assert otro != null : "mensaje invalido";
+        if (otro == null) 
+            throw new IllegalArgumentException("mensaje invalido");
         // verifica si los tamaños de las listas son diferentes
         if (this.lineas.size() != otro.lineas.size()) {
             return false; // no son iguales
         }
         // compara las lineas individualmente
-        for(int i = 0; i < this.lineas.size(); i++){
+        int i = 0;
+        while(i < this.lineas.size()){
             String actuaLinea = this.lineas.get(i);
             String otraLinea = otro.lineas.get(i);
-            if (!actuaLinea.equals(otraLinea)){
+            if(!actuaLinea.equals(otraLinea)){
                 return false; // las lineas no coinciden
             }
+            i++; // avanza al siguiente
         }
         return true; // todas las lineas coinciden, es igual al otro
     }
