@@ -111,10 +111,10 @@ public class DecodificadorMensajes
 
             int caracterDecodificado = (caracterActual - codigo[indiceCodigo]) % 127;
 
-            // Si el valor del caracter decodificado llega a ser 'NUL'
-            // entonces lo vuelvo un caracter 'DEL' tal que este
-            // dentro del rango de caracteres ASCII posibles (128).
-
+            // Si el caracter decodificado actual se va fuera del rango
+            // entonces calculo el caracter correspondiente dentro del rango
+            // determinando la diferencia entre el limite superior (128) y
+            // valor restantre del caracter decodificado.
             if (caracterDecodificado < 0) caracterDecodificado = 128 + caracterDecodificado;
 
             result += (char)caracterDecodificado;
