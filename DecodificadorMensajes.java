@@ -55,7 +55,7 @@ public class DecodificadorMensajes
      * Precondición: El mensaje aún no fue descifrado (i.e., el campo 
      * mensajeDecodificado es null).
      */
-    public void decodificarMensaje() 
+    public void decodificarMensaje() throws IllegalArgumentException
     {
         if (!(this.mensajeDecodificado == null)) {
             throw new IllegalStateException("no se puede decodificar un mensaje ya decodificado");
@@ -100,16 +100,25 @@ public class DecodificadorMensajes
      * @param codigo es el código a utilizar para la desencripción
      */
     public String desencriptarCadena(String str, int[] codigo) {
-        //Nota-Astrea: siendo necesario un test, lo cambio a public para que este tenga acceso
-        //Podria ser protected...
         if (str == null) throw new IllegalArgumentException("Cadena nula");
         if (codigo == null) throw new IllegalArgumentException("Código inválido");
         String result = "";
         int indiceCodigo = 0;
         for (int i = 0; i < str.length(); i++) {
-            char curr = str.charAt(i);
-            char currEncriptado = (char) ((curr - codigo[indiceCodigo]) % 128);
-            result = result + currEncriptado;
+
+            char caracterActual = str.charAt(i);
+
+
+            int caracterDecodificado = (caracterActual - codigo[indiceCodigo]) % 127;
+
+            // Si el valor del caracter decodificado llega a ser 'NUL'
+            // entonces lo vuelvo un caracter 'DEL' tal que este
+            // dentro del rango de caracteres ASCII posibles (128).
+
+            if (caracterDecodificado < 0) caracterDecodificado = 128 + caracterDecodificado;
+
+            result += (char)caracterDecodificado;
+
             indiceCodigo = (indiceCodigo + 1) % (codigo.length);
         }
         return result;
